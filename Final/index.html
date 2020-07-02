@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            /*消除網頁邊框*/
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: rgba(95, 77, 51, 0.815);
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        
+        .logo {
+            margin: 0 0 0 10px;
+        }
+        
+        .about {
+            background: linear-gradient(rgb(255, 255, 255), rgba(255, 252, 232, 0.897));
+        }
+        
+        .about2 {
+            background: linear-gradient(rgba(255, 252, 232, 0.897), rgbaa(254, 255, 231, 0.911));
+        }
+        
+        .about3 {
+            background: linear-gradient(rgba(254, 255, 231, 0.911), rgba(255, 212, 212, 0.842));
+        }
+        
+        img {
+            vertical-align: bottom;
+        }
+        
+        .item-group {
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+        
+        .bg img {
+            /*最上方圖片*/
+            width: 100%;
+        }
+        
+        .title h2 {
+            font-size: 30px;
+            text-align: center;
+        }
+        
+        .title p {
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .title td {
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .pic img {
+            /*設置全圖片*/
+            width: 100%;
+        }
+        
+        .item {
+            margin: 0 10px 20px;
+        }
+        
+        .item .text h3 {
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .item .pic {
+            align-self: center;
+        }
+        
+        .two {
+            padding: 15px 0 0 0;
+        }
+        
+        .header {
+            height: 50px;
+            width: 100%;
+            background-color: rgb(252, 255, 211, 0.4);
+            position: fixed;
+            display: flex;
+            justify-content: space-between;
+            /*分散對齊*/
+            align-items: center;
+            /* position: relative; */
+        }
+        
+        .btn {
+            width: 40px;
+            height: 40px;
+            background-color: rgb(253, 204, 175);
+            display: block;
+            /*規定元素以方塊方式呈現*/
+            position: absolute;
+            /*相對於他的父完素進行絕對定位*/
+            top: 5px;
+            right: 10px;
+        }
+        
+        .btn span {
+            opacity: 0;
+            /*區塊內透明*/
+            width: 1px;
+            height: 1px;
+            display: block;
+            overflow: hidden;
+            /*自動隱藏超出的文字or圖片*/
+        }
+        
+        .btn::before {
+            /*在原本的元素[之前]加入內容*/
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 2px;
+            width: 36px;
+            background-color: #aaa;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 10px 0px #aaa, 0px 5px 0px #aaa, 0px -5px 0px #aaa, 0px -10px 0px #aaa;
+            /*影子*/
+        }
+        
+        nav {
+            width: 30%;
+            height: 100vh;
+            /*view height式螢幕可視範圍高度的百分比*/
+            background-color: rgb(252, 255, 211, 0.8);
+            position: absolute;
+            top: 50px;
+            left: -100%;
+        }
+        
+        nav a {
+            /*設置裡面的超連結*/
+            display: block;
+            /*link變直排*/
+            text-decoration: none;
+            color: rgb(253, 201, 122);
+            padding: 10px 20px;
+            border-bottom: 1px solid rgba(255, 248, 248, 0.87);
+            background-color: rgb(252, 255, 211, 0);
+        }
+        
+        #menu {
+            position: absolute;
+            /*讓最上方的checkbox隱藏*/
+        }
+        
+        #menu:checked~.header nav {
+            left: 0;
+        }
+        
+        [class*="col-"] {
+            float: left;
+            padding: 15px;
+            width: 100%;
+        }
+        
+        @media only screen and (max-width:599px) {
+            .col-ss-0 {
+                width: 0%;
+            }
+            .col-ss-1 {
+                width: 8.33%;
+            }
+            .col-ss-2 {
+                width: 16.66%;
+            }
+            .col-ss-3 {
+                width: 25%;
+            }
+            .col-ss-4 {
+                width: 33.33%;
+            }
+            .col-ss-5 {
+                width: 41.66%;
+            }
+            .col-ss-6 {
+                width: 50%;
+            }
+            .col-ss-7 {
+                width: 58.33%;
+            }
+            .col-ss-8 {
+                width: 66.66%;
+            }
+            .col-ss-9 {
+                width: 75%;
+            }
+            .col-ss-10 {
+                width: 83.33%;
+            }
+            .col-ss-11 {
+                width: 91.66%;
+            }
+            .col-ss-12 {
+                width: 100%;
+            }
+            .pictures figcaption {
+                font-size: 13px;
+            }
+        }
+        
+        @media only screen and (min-width:600px) {
+            .col-s-0 {
+                width: 0%;
+            }
+            .col-s-1 {
+                width: 8.33%;
+            }
+            .col-s-2 {
+                width: 16.66%;
+            }
+            .col-s-3 {
+                width: 25%;
+            }
+            .col-s-4 {
+                width: 33.33%;
+            }
+            .col-s-5 {
+                width: 41.66%;
+            }
+            .col-s-6 {
+                width: 50%;
+            }
+            .col-s-7 {
+                width: 58.33%;
+            }
+            .col-s-8 {
+                width: 66.66%;
+            }
+            .col-s-9 {
+                width: 75%;
+            }
+            .col-s-10 {
+                width: 83.33%;
+            }
+            .col-s-11 {
+                width: 91.66%;
+            }
+            .col-s-12 {
+                width: 100%;
+            }
+            .pictures figcaption {
+                font-size: 18px;
+            }
+        }
+        
+        @media only screen and (min-width: 768px) {
+            /*設定桌面及平板顯示*/
+            .item-group {
+                display: flex;
+                /*彈性盒子，又稱flexbox*/
+            }
+            .two .item {
+                display: flex;
+            }
+            .two .item .text {
+                display: flex;
+                padding: 0 20px;
+                box-sizing: border-box;
+                flex-direction: column;
+            }
+            .btn {
+                display: none;
+            }
+            nav {
+                position: relative;
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+                /*透明顏色*/
+            }
+            nav a {
+                border-bottom: none;
+            }
+            .col-0 {
+                width: 0%;
+            }
+            .col-1 {
+                width: 8.33%;
+            }
+            .col-2 {
+                width: 16.66%;
+            }
+            .col-3 {
+                width: 25%;
+            }
+            .col-4 {
+                width: 33.33%;
+            }
+            .col-5 {
+                width: 41.66%;
+            }
+            .col-6 {
+                width: 50%;
+            }
+            .col-7 {
+                width: 58.33%;
+            }
+            .col-8 {
+                width: 66.66%;
+            }
+            .col-9 {
+                width: 75%;
+            }
+            .col-10 {
+                width: 83.33%;
+            }
+            .col-11 {
+                width: 91.66%;
+            }
+            .col-12 {
+                width: 100%;
+            }
+            .pictures figcaption {
+                font-size: 20px;
+            }
+        }
+        
+        .two .text {
+            padding-top: 25px;
+            align-self: center;
+        }
+        
+        #footer {
+            background-color: rgba(255, 210, 210, 0.904);
+            padding: 5px 0;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .pictures img {
+            width: auto;
+        }
+        
+        .ppa {
+            background: linear-gradient(to bottom right, rgb(255, 211, 238), rgb(255, 254, 210), rgb(218, 255, 218), rgb(167, 249, 255));
+        }
+        
+        .ppb {
+            background: linear-gradient(to bottom right, rgb(255, 228, 187), rgb(255, 178, 77));
+        }
+        
+        .ppc {
+            background: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(172, 172, 172));
+        }
+        
+        .ppd {
+            background: linear-gradient(to bottom right, rgb(255, 193, 193), rgb(255, 160, 160));
+        }
+        
+        .cco1 {
+            color: rgb(252, 169, 130);
+        }
+        
+        .cco2 {
+            color: rgb(253, 163, 163);
+        }
+        
+        .td {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        
+        .h11 {
+            text-align: center;
+        }
+        
+        .pictures figcaption {
+            text-align: center;
+            font-weight: bold;
+            padding: 5px 0 0 0;
+        }
+        
+        .pictures img {
+            width: 100%;
+        }
+        
+        .newline {
+            padding: 0;
+        }
+        
+        .blankHeader {
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="menu">
+
+    <div class="header">
+        <h1 class="logo">
+            <a href="#"><img src="2.jpg" height="50px">
+        </h1>
+        <label for="menu" class="btn"> 
+            <span>選單</span>
+        </label>
+        <nav>
+            <a href="https://food.movergames.com/"><b>官網</b></a>
+            <a href="https://www.facebook.com/food.mover/"><b>粉絲專頁</b></a>
+            <a href="https://forum.gamer.com.tw/A.php?bsn=37199"><b>巴哈姆特</b></a>
+
+        </nav>
+    </div>
+    <div class="bg">
+        <img src="1.jpg">
+    </div>
+    <div class="col-12 col-s-12 col-ss-12"></div>
+    <div class="about">
+        <div class="wrap">
+            <div class="title">
+                <div class="two">
+                    <div class="wrap">
+                        <div class="item-group">
+                            <div class="item">
+                                <div class="pic">
+                                    <iframe width="871" height="490" src="https://www.youtube.com/embed/Aa3k3V7z92s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <div class="text">
+                                    <h3 style="text-align: center;"><b class="cco2">本次活動PV</b></h3><br>
+                                    <h1 style="text-align: center;"><b class="cco1">瑞雪迎春</b> </h1><br>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about2">
+            <div class="wrap">
+                <div class="title">
+                    <div class="two">
+                        <h2>本期活動角色介紹</h2>
+
+                    </div>
+                    <div class="pictures">
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <img src="a.jpg" alt="">
+                                <figcaption class="ppa">玉麟香腰[年度限定]<br> 御品　</figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <img src="b.jpg" alt="">
+                                <figcaption class="ppa">屠蘇酒<br> 御品　</figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-0 col-s-12 col-ss-12 newline"></div>
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <img src="c.jpg" alt="">
+                                <figcaption class="ppb">年年有餘<br> 珍品　</figcaption>
+                            </figure>
+                        </div>
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <img src="d.jpg" alt="">
+                                <figcaption class="ppc">年糕<br> 尚品　</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-s-12 col-ss-12"></div>
+            <div class="about3">
+
+                <div class="wrap">
+                    <div class="title">
+                        <h2>活動攻略</h2>
+                    </div>
+                    <div class="pictures">
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <figcaption class="ppd">食魂詳細介紹</figcaption>
+                            </figure>
+                            <br>
+                            <p class="h11"><a href="https://www.tap.io/topic/2147571389"><b>玉麟香腰</b></a></p>
+                            <p class="h11"><a href="https://www.tap.io/topic/2147573940"><b>屠蘇酒</b></a></p>
+                            <p class="h11"><a href="https://www.taptap.com/topic/9740273?region=hk"><b>年年有餘</b></a></p>
+                            <p class="h11"><a href="https://www.tap.io/topic/2147572523"><b>年糕</b></a></p>
+                        </div>
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <figcaption class="ppd">華燈盛會</figcaption>
+                            </figure>
+                            <br>
+                            <p class="h11"><a href="https://ref.gamer.com.tw/redir.php?url=https%3A%2F%2Fforum.gamer.com.tw%2FCo.php%3Fbsn%3D37199%26sn%3D12826%26subbsn%3D4%26bPage%3D0"><b>解謎正確答案</b></a></p>
+                        </div>
+                        <div class="col-0 col-s-12 col-ss-12 newline"></div>
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <figcaption class="ppd">踏雪拾珍</figcaption>
+                            </figure>
+                            <br>
+                            <p class="h11"><a href="https://sj.xiaopi.com/swy/137858.html"><b>遊戲規則</b></a></p>
+                        </div>
+                        <div class="col-3 col-s-6 col-ss-6">
+                            <figure>
+                                <figcaption class="ppd">天狐幻戲</figcaption>
+                            </figure>
+                            <br>
+                            <p class="h11"><a href="https://ref.gamer.com.tw/redir.php?url=https%3A%2F%2Fforum.gamer.com.tw%2FCo.php%3Fbsn%3D37199%26sn%3D12918%26subbsn%3D4%26bPage%3D2"><b>階段一</b></a></p>
+                            <p class="h11"><a href="https://ref.gamer.com.tw/redir.php?url=https%3A%2F%2Fforum.gamer.com.tw%2FCo.php%3Fbsn%3D37199%26sn%3D12919%26subbsn%3D4%26bPage%3D2"><b>階段二、三</b></a></p>
+                            <p class="h11"><a href="https://ref.gamer.com.tw/redir.php?url=https%3A%2F%2Fforum.gamer.com.tw%2FCo.php%3Fbsn%3D37199%26sn%3D12920%26subbsn%3D4%26bPage%3D2"><b>階段四</b></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="col-12 col-s-12 col-ss-12" style="color: white;">
+                    © copyright 2020 by B10856047 張晏瑛
+                </div>
+</body>
+
+</html>
